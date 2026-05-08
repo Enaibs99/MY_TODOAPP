@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const live_url = process.env.LIVE_URL;
-const local_url = process.env.LOCAL_URL;
+const router = require("./routes/todoRoutes");
+const live_url = "mongodb+srv://Enaibs99:Brunofernandes@cluster0.opgq0tl.mongodb.net/?appName=Cluster0";
+const local_url = "mongodb://localhost:27017/userDB";
 
 mongoose
     .connect(live_url)
