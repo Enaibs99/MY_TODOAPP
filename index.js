@@ -4,11 +4,12 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const router = require("./routes/todoRoutes");
-const live_url = "mongodb+srv://Enaibs99:Brunofernandes@cluster0.opgq0tl.mongodb.net/?appName=Cluster0";
-const local_url = "mongodb://localhost:27017/userDB";
+
+const MONGO_URI = process.env.MONGO_URI;
+const PORT = process.env.PORT || 3000;
 
 mongoose
-    .connect(live_url)
+    .connect(MONGO_URI)
     .then(() => console.log('MongoDB connected successfully'))
     .catch((err) => console.error('Connection error:', err));
 
