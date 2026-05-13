@@ -1,32 +1,25 @@
-require('dotenv').config();
-
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-
-const app = express();
-
-if (!process.env.MONGO_URL) {
-    throw new Error("MONGO_URL is missing in .env");
-}
-const router = require("./routes/todoRoutes.js");
-
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const router = require("./routes/todoRoutes");
+const live_url =
+  "mongodb+srv://Enaibs99:Brunofernandes@cluster0.opgq0tl.mongodb.net/?appName=Cluster0";
+const local_url = "mongodb://localhost:27017/userDB";
 
 mongoose
-    .connect(process.env.MONGO_URL)  
-    .then(() => console.log('MongoDB connected successfully'))
-    .catch((err) => console.error('Connection error:', err));
+  .connect(live_url)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("Connection Error: ", err));
 
-
+const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/todos", router);
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+  res.send("Hello World!");
 });
-
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
