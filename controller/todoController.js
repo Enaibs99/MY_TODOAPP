@@ -4,16 +4,14 @@ const TodoModel = require("../model/todoModel.js");
 const getAllTodos = async (req, res) => {
     try {
         const todos = await TodoModel.find();
-
         return res.status(200).json({
             message: "All Todos" ,
             data : todos
         });
-
     } catch (err) {
-        return res.status(500).json({ error: err.message });
+      return res.status(500).json({ error: err.message });
     }
-};
+   };
 
 const getOneTodo = async (req, res) => {
     try {
