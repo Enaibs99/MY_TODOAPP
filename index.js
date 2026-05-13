@@ -3,8 +3,14 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+
 const app = express();
-const router = require("./routes/todoRoutes");
+
+if (!process.env.MONGO_URL) {
+    throw new Error("MONGO_URL is missing in .env");
+}
+const router = require("./routes/todoRoutes.js");
+
 
 mongoose
     .connect(process.env.MONGO_URL)  
