@@ -3,12 +3,13 @@ const TodoModel = require("../model/todoModel");
 //CRUD
 const getAllTodos = async (req, res) => {
     try {
-        const { id } = req.params;
         const todos = await TodoModel.find();
+        
         return res.status(200).json({
             message: "All Todos" ,
             data : todos
         });
+
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
